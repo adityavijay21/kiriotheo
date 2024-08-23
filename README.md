@@ -34,30 +34,79 @@ For Visual Studio Code users:
 3. Choose "javascriptreact.json"
 4. Paste the snippets into this file
 
-## 🎈 Usage
-
-To use a snippet, simply type its prefix and press `Tab` or `Enter`. For example:
-
-- Type `imr` and press `Tab` to import React
-- Type `ffc` and press `Tab` to create a functional component
-
 ## 📜 Snippet List
-
-Here's a quick overview of some key snippets:
+## React Snippet Prefixes
 
 | Prefix | Description |
-|--------|-------------|
-| `imr`  | Import React |
+|---|---|
+| **Basic Imports** |  |
+| `imr` | Import React |
+| `imrc` | Import React and Component |
+| `imrd` | Import ReactDOM |
 | `imrs` | Import React and useState |
-| `imrse`| Import React, useState and useEffect |
-| `ffc`  | Function Component |
-| `afc`  | Arrow Function Component |
-| `uef`  | useEffect Hook |
-| `usf`  | Declare a new state variable using State Hook |
-| `ccc`  | Class Component with Constructor |
-| `hoc`  | Higher Order Component |
+| `imrse` | Import React, useState, and useEffect |
+| `impt` | Import PropTypes |
+| `impc` | Import React and PureComponent |
+| **Components** |  |
+| `cc` | Class Component |
+| `ffc` | Function Component |
+| `afc` | Arrow Function Component |
+| `rmc` | React.memo Component |
+| `tsrc` | TypeScript React Component |
+| **Hooks** |  |
+| `ush` | useState Hook |
+| `ueh` | useEffect Hook |
+| `uch` | useContext Hook |
+| `umh` | useMemo Hook |
+| `uch` | useCallback Hook |
+| `urh` | useReducer Hook |
+| `urefh` | useRef Hook |
+| `uih` | useImperativeHandle Hook |
+| `uleh` | useLayoutEffect Hook |
+| **Custom Hooks** |  |
+| `cuh` | Custom Hook |
+| `cuht` | Custom Hook with TypeScript |
+| `crht` | Custom React Hook with TypeScript |
+| `rceh` | React Custom Event Hook |
+| **Props and Types** |  |
+| `pt` | PropTypes declaration |
+| `dp` | defaultProps declaration |
+| **Styling** |  |
+| `sc` | Styled component |
+| `thp` | Theme Provider |
+| **State Management** |  |
+| `rac` | Redux Action Creator |
+| `rr` | Redux Reducer |
+| `cp` | Context Provider |
+| `rctx` | React Context with TypeScript |
+| `rca` | Recoil Atom |
+| `rcs` | Recoil Selector |
+| **Routing** |  |
+| `rrs` | React Router Setup |
+| **Testing** |  |
+| `rtl` | React Testing Library Test |
+| **Next.js** |  |
+| `nxp` | Next.js Page |
+| **React Native** |  |
+| `rnc` | React Native Component |
+| **Forms** |  |
+| `frm` | Formik Form |
+| **Error Handling** |  |
+| `eb` | Error Boundary |
+| `reb` | React Error Boundary with Fallback UI |
+| **Performance Optimization** |  |
+| `hoc` | Higher-Order Component |
+| `rfr` | React.forwardRef |
+| **Data Fetching** |  |
+| `gql` | GraphQL Query |
+| `rqh` | React Query Hook |
+| `apif` | API Fetch |
+| **Miscellaneous** |  |
+| `sbst` | Storybook Story |
+| `rpt` | React Portal |
+| `rlz` | React.lazy with Suspense |
 
-...and many more! Check the full snippet file for all available shortcuts.
+Use these prefixes in your code editor to quickly generate the corresponding React code snippets.
 
 ## 👥 Contributing
 
@@ -72,110 +121,6 @@ We welcome contributions! If you have a suggestion for a new snippet or an impro
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-
-
-
-
-Basic Imports
-
-imr: Import React
-imrc: Import React and Component
-imrd: Import ReactDOM
-imrs: Import React and useState
-imrse: Import React, useState, and useEffect
-impt: Import PropTypes
-impc: Import React and PureComponent
-
-Components
-
-cc: Class Component
-ffc: Function Component
-afc: Arrow Function Component
-rmc: React.memo Component
-tsrc: TypeScript React Component
-
-Hooks
-
-ush: useState Hook
-ueh: useEffect Hook
-uch: useContext Hook
-umh: useMemo Hook
-uch: useCallback Hook
-urh: useReducer Hook
-urefh: useRef Hook
-uih: useImperativeHandle Hook
-uleh: useLayoutEffect Hook
-
-Custom Hooks
-
-cuh: Custom Hook
-cuht: Custom Hook with TypeScript
-crht: Custom React Hook with TypeScript
-rceh: React Custom Event Hook
-
-Props and Types
-
-pt: PropTypes declaration
-dp: defaultProps declaration
-
-Styling
-
-sc: Styled component
-thp: Theme Provider
-
-State Management
-
-rac: Redux Action Creator
-rr: Redux Reducer
-cp: Context Provider
-rctx: React Context with TypeScript
-rca: Recoil Atom
-rcs: Recoil Selector
-
-Routing
-
-rrs: React Router Setup
-
-Testing
-
-rtl: React Testing Library Test
-
-Next.js
-
-nxp: Next.js Page
-
-React Native
-
-rnc: React Native Component
-
-Forms
-
-frm: Formik Form
-
-Error Handling
-
-eb: Error Boundary
-reb: React Error Boundary with Fallback UI
-
-Performance Optimization
-
-hoc: Higher-Order Component
-rfr: React.forwardRef
-
-Data Fetching
-
-gql: GraphQL Query
-rqh: React Query Hook
-apif: API Fetch
-
-Miscellaneous
-
-sbst: Storybook Story
-rpt: React Portal
-rlz: React.lazy with Suspense
-
-Use these prefixes in your code editor to quickly generate the corresponding React code snippets.
 
 
 ---
