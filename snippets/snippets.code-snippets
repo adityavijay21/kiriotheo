@@ -43,45 +43,6 @@
       "export default ${1:ComponentName};"
     ]
   },
-  "Class Component With Constructor": {
-    "prefix": "ccc",
-    "body": [
-      "class ${1:ComponentName} extends Component {",
-      "  constructor(props) {",
-      "    super(props);",
-      "    this.state = {",
-      "      $2",
-      "    };",
-      "  }",
-      "",
-      "  render() {",
-      "    return (",
-      "      <div>",
-      "        $0",
-      "      </div>",
-      "    );",
-      "  }",
-      "}",
-      "",
-      "export default ${1:ComponentName};"
-    ]
-  },
-  "Class Pure Component": {
-    "prefix": "cpc",
-    "body": [
-      "class ${1:ComponentName} extends PureComponent {",
-      "  render() {",
-      "    return (",
-      "      <div>",
-      "        $0",
-      "      </div>",
-      "    );",
-      "  }",
-      "}",
-      "",
-      "export default ${1:ComponentName};"
-    ]
-  },
   "Function Component": {
     "prefix": "ffc",
     "body": [
@@ -114,136 +75,701 @@
       "export default ${1:ComponentName};"
     ]
   },
-  "useEffect Hook": {
-    "prefix": "uef",
+  "React Hook useState": {
+    "prefix": "ush",
+    "body": [
+      "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState(${2:initialState});"
+    ]
+  },
+  "React Hook useEffect": {
+    "prefix": "ueh",
     "body": [
       "useEffect(() => {",
-      "  $1",
+      "  ${1:effect}",
       "  return () => {",
-      "    $0",
+      "    ${2:cleanup}",
       "  };",
-      "}, []);"
+      "}, [${3:dependencies}]);"
     ]
   },
-  "useCallback Hook": {
-    "prefix": "ucb",
+  "React Hook useContext": {
+    "prefix": "uch",
     "body": [
-      "const ${1:memoizedCallback} = useCallback(() => {",
-      "  $2",
-      "}, [$0]);"
+      "const ${1:contextValue} = useContext(${2:MyContext});"
     ]
   },
-  "useMemo Hook": {
-    "prefix": "ume",
+  "Custom Hook": {
+    "prefix": "cuh",
     "body": [
-      "const ${1:memoizedValue} = useMemo(() => {",
-      "  return $2;",
-      "}, [$0]);"
-    ]
-  },
-  "getDerivedStateFromProps": {
-    "prefix": "gds",
-    "body": [
-      "static getDerivedStateFromProps(nextProps, prevState) {",
-      "  $0",
-      "  return null;",
-      "}"
-    ]
-  },
-  "shouldComponentUpdate": {
-    "prefix": "scu",
-    "body": [
-      "shouldComponentUpdate(nextProps, nextState) {",
-      "  $0",
-      "  return true;",
-      "}"
-    ]
-  },
-  "componentDidUpdate": {
-    "prefix": "cdu",
-    "body": [
-      "componentDidUpdate(prevProps, prevState) {",
-      "  $0",
-      "}"
-    ]
-  },
-  "componentWillUnmount": {
-    "prefix": "cwun",
-    "body": [
-      "componentWillUnmount() {",
-      "  $0",
-      "}"
-    ]
-  },
-  "componentDidCatch": {
-    "prefix": "cdc",
-    "body": [
-      "componentDidCatch(error, info) {",
-      "  $0",
-      "}"
-    ]
-  },
-  "getSnapshotBeforeUpdate": {
-    "prefix": "gsbu",
-    "body": [
-      "getSnapshotBeforeUpdate(prevProps, prevState) {",
-      "  $0",
-      "  return null;",
-      "}"
-    ]
-  },
-  "setState": {
-    "prefix": "ss",
-    "body": [
-      "this.setState((prevState, props) => ({",
-      "  $0",
-      "}));"
-    ]
-  },
-  "Declare a new state variable using State Hook": {
-    "prefix": "usf",
-    "body": [
-      "const [${1:state}, set${1/(.*)/${1:/capitalize}/}] = useState($2);"
-    ]
-  },
-  "Render Prop": {
-    "prefix": "rprop",
-    "body": [
-      "${1:renderProp}={({ ${2:prop} }) => (",
-      "  $0",
-      ")}"
-    ]
-  },
-  "Higher Order Component": {
-    "prefix": "hoc",
-    "body": [
-      "import React from 'react';",
+      "import { useState, useEffect } from 'react';",
       "",
-      "const ${1:withSomething} = (WrappedComponent) => {",
-      "  return class extends React.Component {",
-      "    render() {",
-      "      return <WrappedComponent {...this.props} $0 />;",
-      "    }",
-      "  };",
+      "function use${1:CustomHook}(${2:params}) {",
+      "  const [${3:state}, set${3/(.*)/${1:/capitalize}/}] = useState(${4:initialState});",
+      "",
+      "  useEffect(() => {",
+      "    // Effect logic",
+      "    $0",
+      "  }, [${5:dependencies}]);",
+      "",
+      "  return ${3:state};",
+      "}",
+      "",
+      "export default use${1:CustomHook};"
+    ]
+  },
+  "PropTypes": {
+    "prefix": "pt",
+    "body": [
+      "${1:ComponentName}.propTypes = {",
+      "  ${2:prop}: PropTypes.${3:type},",
+      "};"
+    ]
+  },
+  "Default Props": {
+    "prefix": "dp",
+    "body": [
+      "${1:ComponentName}.defaultProps = {",
+      "  ${2:prop}: ${3:defaultValue},",
+      "};"
+    ]
+  },
+  "Styled Component": {
+    "prefix": "sc",
+    "body": [
+      "import styled from 'styled-components';",
+      "",
+      "const ${1:StyledComponent} = styled.${2:div}`",
+      "  ${3:css}",
+      "`;",
+      "",
+      "export default ${1:StyledComponent};"
+    ]
+  },
+  "Redux Action Creator": {
+    "prefix": "rac",
+    "body": [
+      "export const ${1:actionName} = (${2:payload}) => ({",
+      "  type: ${3:ACTION_TYPE},",
+      "  payload: ${2:payload},",
+      "});"
+    ]
+  },
+  "Redux Reducer": {
+    "prefix": "rr",
+    "body": [
+      "const initialState = {",
+      "  ${1:property}: ${2:value},",
       "};",
       "",
-      "export default ${1:withSomething};"
+      "export default function ${3:reducerName}(state = initialState, action) {",
+      "  switch (action.type) {",
+      "    case ${4:ACTION_TYPE}:",
+      "      return {",
+      "        ...state,",
+      "        ${5:property}: action.payload,",
+      "      };",
+      "    default:",
+      "      return state;",
+      "  }",
+      "}"
     ]
   },
   "Context Provider": {
     "prefix": "cp",
     "body": [
-      "<${1:Context}.Provider value={${2:value}}>",
-      "  ${0}",
-      "</${1:Context}.Provider>"
-    ]
-  },
-  "Class Property Function": {
-    "prefix": "cpf",
-    "body": [
-      "${1:propertyName} = (${2:params}) => {",
-      "  $0",
+      "import React, { createContext, useState } from 'react';",
+      "",
+      "export const ${1:MyContext} = createContext();",
+      "",
+      "export const ${1:MyContext}Provider = ({ children }) => {",
+      "  const [${2:state}, set${2/(.*)/${1:/capitalize}/}] = useState(${3:initialState});",
+      "",
+      "  return (",
+      "    <${1:MyContext}.Provider value={{ ${2:state}, set${2/(.*)/${1:/capitalize}/} }}>",
+      "      {children}",
+      "    </${1:MyContext}.Provider>",
+      "  );",
       "};"
     ]
-  }
+  },
+  "React Router Setup": {
+    "prefix": "rrs",
+    "body": [
+      "import React from 'react';",
+      "import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';",
+      "",
+      "const App = () => {",
+      "  return (",
+      "    <Router>",
+      "      <Switch>",
+      "        <Route exact path='/' component={${1:Home}} />",
+      "        <Route path='/${2:path}' component={${3:Component}} />",
+      "      </Switch>",
+      "    </Router>",
+      "  );",
+      "};",
+      "",
+      "export default App;"
+    ]
+  },
+  "React Testing Library Test": {
+    "prefix": "rtl",
+    "body": [
+      "import React from 'react';",
+      "import { render, screen } from '@testing-library/react';",
+      "import ${1:ComponentName} from './${1:ComponentName}';",
+      "",
+      "test('renders ${1:ComponentName}', () => {",
+      "  render(<${1:ComponentName} />);",
+      "  const element = screen.getByText(/${2:text}/i);",
+      "  expect(element).toBeInTheDocument();",
+      "});"
+    ]
+  },
+  "Next.js Page": {
+    "prefix": "nxp",
+    "body": [
+      "import React from 'react';",
+      "",
+      "const ${1:PageName} = () => {",
+      "  return (",
+      "    <div>",
+      "      <h1>${1:PageName}</h1>",
+      "      $0",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:PageName};"
+    ]
+  },
+  "React Native Component": {
+    "prefix": "rnc",
+    "body": [
+      "import React from 'react';",
+      "import { View, Text, StyleSheet } from 'react-native';",
+      "",
+      "const ${1:ComponentName} = () => {",
+      "  return (",
+      "    <View style={styles.container}>",
+      "      <Text>${1:ComponentName}</Text>",
+      "    </View>",
+      "  );",
+      "};",
+      "",
+      "const styles = StyleSheet.create({",
+      "  container: {",
+      "    flex: 1,",
+      "    justifyContent: 'center',",
+      "    alignItems: 'center',",
+      "  },",
+      "});",
+      "",
+      "export default ${1:ComponentName};"
+    ]
+  },
+  "Formik Form": {
+    "prefix": "frm",
+    "body": [
+      "import React from 'react';",
+      "import { Formik, Form, Field } from 'formik';",
+      "",
+      "const ${1:FormName} = () => (",
+      "  <Formik",
+      "    initialValues={{ ${2:field}: '' }}",
+      "    onSubmit={(values, actions) => {",
+      "      console.log(values);",
+      "      actions.setSubmitting(false);",
+      "    }}",
+      "  >",
+      "    {({ isSubmitting }) => (",
+      "      <Form>",
+      "        <Field name='${2:field}' />",
+      "        <button type='submit' disabled={isSubmitting}>",
+      "          Submit",
+      "        </button>",
+      "      </Form>",
+      "    )}",
+      "  </Formik>",
+      ");"
+    ]
+  },
+  "Error Boundary": {
+    "prefix": "eb",
+    "body": [
+      "import React, { Component } from 'react';",
+      "",
+      "class ErrorBoundary extends Component {",
+      "  constructor(props) {",
+      "    super(props);",
+      "    this.state = { hasError: false };",
+      "  }",
+      "",
+      "  static getDerivedStateFromError(error) {",
+      "    return { hasError: true };",
+      "  }",
+      "",
+      "  componentDidCatch(error, errorInfo) {",
+      "    console.log(error, errorInfo);",
+      "  }",
+      "",
+      "  render() {",
+      "    if (this.state.hasError) {",
+      "      return <h1>Something went wrong.</h1>;",
+      "    }",
+      "",
+      "    return this.props.children;",
+      "  }",
+      "}",
+      "",
+      "export default ErrorBoundary;"
+    ]
+  },
+  "Higher-Order Component": {
+    "prefix": "hoc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "const with${1:HOCName} = (WrappedComponent) => {",
+      "  return class extends React.Component {",
+      "    render() {",
+      "      return <WrappedComponent {...this.props} ${2:newProp}={${3:value}} />;",
+      "    }",
+      "  };",
+      "};",
+      "",
+      "export default with${1:HOCName};"
+    ]
+  },
+  "useMemo Hook": {
+    "prefix": "umh",
+    "body": [
+      "const memoizedValue = useMemo(() => computeExpensiveValue(${1:a}, ${2:b}), [${1:a}, ${2:b}]);"
+    ]
+  },
+  "useCallback Hook": {
+    "prefix": "uch",
+    "body": [
+      "const memoizedCallback = useCallback(",
+      "  () => {",
+      "    doSomething(${1:a}, ${2:b});",
+      "  },",
+      "  [${1:a}, ${2:b}],",
+      ");"
+    ]
+  },
+  "TypeScript React Component": {
+    "prefix": "tsrc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface ${1:ComponentName}Props {",
+      "  ${2:prop}: ${3:type};",
+      "}",
+      "",
+      "const ${1:ComponentName}: React.FC<${1:ComponentName}Props> = ({ ${2:prop} }) => {",
+      "  return (",
+      "    <div>",
+      "      ${4:content}",
+      "    </div>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:ComponentName};"
+    ]
+  },
+  "GraphQL Query": {
+    "prefix": "gql",
+    "body": [
+      "import { gql, useQuery } from '@apollo/client';",
+      "",
+      "const GET_${1:DATA} = gql`",
+      "  query Get${1:Data} {",
+      "    ${2:queryName} {",
+      "      ${3:field}",
+      "    }",
+      "  }",
+      "`;",
+      "",
+      "const { loading, error, data } = useQuery(GET_${1:DATA});"
+    ]
+  },
+  "Storybook Story": {
+    "prefix": "sbst",
+    "body": [
+      "import React from 'react';",
+      "import { Story, Meta } from '@storybook/react';",
+      "",
+      "import { ${1:ComponentName}, ${1:ComponentName}Props } from './${1:ComponentName}';",
+      "",
+      "export default {",
+      "  title: 'Components/${1:ComponentName}',",
+      "  component: ${1:ComponentName},",
+      "} as Meta;",
+      "",
+      "const Template: Story<${1:ComponentName}Props> = (args) => <${1:ComponentName} {...args} />;",
+      "",
+      "export const Default = Template.bind({});",
+      "Default.args = {",
+      "  ${2:prop}: ${3:value},",
+      "};"
+    ]
+  },
+  "API Fetch": {
+    "prefix": "apif",
+    "body": [
+      "const fetchData = async () => {",
+      "  try {",
+      "    const response = await fetch('${1:url}');",
+      "    const data = await response.json();",
+      "    console.log(data);",
+      "  } catch (error) {",
+      "    console.error('Error:', error);",
+      "  }",
+      "};"
+    ]
+  },
+  "Theme Provider": {
+    "prefix": "thp",
+    "body": [
+      "import React from 'react';",
+      "import { ThemeProvider } from 'styled-components';",
+      "",
+      "const theme = {",
+      "  colors: {",
+      "    primary: '${1:#007bff}',",
+      "    secondary: '${2:#6c757d}',",
+      "  },",
+      "};",
+      "",
+      "const ThemedApp = () => (",
+      "  <ThemeProvider theme={theme}>",
+      "    <App />",
+      "  </ThemeProvider>",
+      ");"
+    ]
+  },
+    "React.memo Component": {
+      "prefix": "rmc",
+      "body": [
+        "import React from 'react';",
+        "",
+        "const ${1:ComponentName} = React.memo(({ ${2:props} }) => {",
+        "  return (",
+        "    <div>",
+        "      $0",
+        "    </div>",
+        "  );",
+        "});",
+        "",
+        "export default ${1:ComponentName};"
+      ]
+    },
+    "useReducer Hook": {
+      "prefix": "urh",
+      "body": [
+        "const [state, dispatch] = useReducer((state, action) => {",
+        "  switch (action.type) {",
+        "    case '${1:ACTION_TYPE}':",
+        "      return {...state, ${2:property}: action.payload};",
+        "    default:",
+        "      return state;",
+        "  }",
+        "}, {",
+        "  ${3:initialState}",
+        "});"
+      ]
+    },
+    "useRef Hook": {
+      "prefix": "urefh",
+      "body": [
+        "const ${1:refName} = useRef(${2:initialValue});"
+      ]
+    },
+    "useMemo with TypeScript": {
+      "prefix": "umht",
+      "body": [
+        "const ${1:memoizedValue} = useMemo<${2:ReturnType}>(() => {",
+        "  return ${3:computeExpensiveValue}(${4:a}, ${5:b});",
+        "}, [${4:a}, ${5:b}]);"
+      ]
+    },
+    "Custom Hook with TypeScript": {
+      "prefix": "cuht",
+      "body": [
+        "import { useState, useEffect } from 'react';",
+        "",
+        "interface ${1:HookName}Props {",
+        "  ${2:prop}: ${3:type};",
+        "}",
+        "",
+        "interface ${1:HookName}Result {",
+        "  ${4:resultProp}: ${5:resultType};",
+        "}",
+        "",
+        "const use${1:HookName} = ({ ${2:prop} }: ${1:HookName}Props): ${1:HookName}Result => {",
+        "  const [${4:resultProp}, set${4/(.*)/${1:/capitalize}/}] = useState<${5:resultType}>(${6:initialValue});",
+        "",
+        "  useEffect(() => {",
+        "    // Effect logic",
+        "    $0",
+        "  }, [${2:prop}]);",
+        "",
+        "  return { ${4:resultProp} };",
+        "}",
+        "",
+        "export default use${1:HookName};"
+      ]
+    },
+    "React Portal": {
+      "prefix": "rpt",
+      "body": [
+        "import ReactDOM from 'react-dom';",
+        "",
+        "const ${1:PortalComponent} = ({ children }) => {",
+        "  const el = document.getElementById('${2:portal-root}');",
+        "  return el ? ReactDOM.createPortal(children, el) : null;",
+        "};"
+      ]
+    },
+    "React.lazy with Suspense": {
+      "prefix": "rlz",
+      "body": [
+        "import React, { Suspense } from 'react';",
+        "",
+        "const ${1:LazyComponent} = React.lazy(() => import('./${1:LazyComponent}'));",
+        "",
+        "const ${2:ParentComponent} = () => (",
+        "  <Suspense fallback={<div>Loading...</div>}>",
+        "    <${1:LazyComponent} />",
+        "  </Suspense>",
+        ");"
+      ]
+    },
+    "useImperativeHandle Hook": {
+      "prefix": "uih",
+      "body": [
+        "useImperativeHandle(ref, () => ({",
+        "  ${1:exposedMethod}: () => {",
+        "    $0",
+        "  }",
+        "}));"
+      ]
+    },
+    "React Component with PropTypes": {
+      "prefix": "rcpt",
+      "body": [
+        "import React from 'react';",
+        "import PropTypes from 'prop-types';",
+        "",
+        "const ${1:ComponentName} = ({ ${2:prop} }) => {",
+        "  return (",
+        "    <div>",
+        "      {${2:prop}}",
+        "    </div>",
+        "  );",
+        "};",
+        "",
+        "${1:ComponentName}.propTypes = {",
+        "  ${2:prop}: PropTypes.${3:type}.isRequired,",
+        "};",
+        "",
+        "export default ${1:ComponentName};"
+      ]
+    },
+    "useLayoutEffect Hook": {
+      "prefix": "uleh",
+      "body": [
+        "useLayoutEffect(() => {",
+        "  // Synchronous side effect",
+        "  $0",
+        "  return () => {",
+        "    // Clean up",
+        "  };",
+        "}, [${1:dependencies}]);"
+      ]
+    },
+    "React.forwardRef": {
+      "prefix": "rfr",
+      "body": [
+        "import React from 'react';",
+        "",
+        "const ${1:ComponentName} = React.forwardRef((props, ref) => {",
+        "  return (",
+        "    <div ref={ref}>",
+        "      $0",
+        "    </div>",
+        "  );",
+        "});",
+        "",
+        "export default ${1:ComponentName};"
+      ]
+    },
+    "Custom React Hook with Typescript": {
+      "prefix": "crht",
+      "body": [
+        "import { useState, useEffect } from 'react';",
+        "",
+        "type ${1:HookName}Props = {",
+        "  ${2:prop}: ${3:type};",
+        "};",
+        "",
+        "type ${1:HookName}Result = {",
+        "  ${4:resultProp}: ${5:resultType};",
+        "};",
+        "",
+        "export const use${1:HookName} = ({ ${2:prop} }: ${1:HookName}Props): ${1:HookName}Result => {",
+        "  const [${4:resultProp}, set${4/(.*)/${1:/capitalize}/}] = useState<${5:resultType}>(${6:initialValue});",
+        "",
+        "  useEffect(() => {",
+        "    // Effect logic",
+        "    $0",
+        "  }, [${2:prop}]);",
+        "",
+        "  return { ${4:resultProp} };",
+        "};"
+      ]
+    },
+    "React Context with TypeScript": {
+      "prefix": "rctx",
+      "body": [
+        "import React, { createContext, useContext, useState } from 'react';",
+        "",
+        "type ${1:ContextName}Type = {",
+        "  ${2:stateName}: ${3:StateType};",
+        "  ${4:setterName}: React.Dispatch<React.SetStateAction<${3:StateType}>>;",
+        "};",
+        "",
+        "const ${1:ContextName}Context = createContext<${1:ContextName}Type | undefined>(undefined);",
+        "",
+        "export const ${1:ContextName}Provider: React.FC = ({ children }) => {",
+        "  const [${2:stateName}, ${4:setterName}] = useState<${3:StateType}>(${5:initialState});",
+        "",
+        "  return (",
+        "    <${1:ContextName}Context.Provider value={{ ${2:stateName}, ${4:setterName} }}>",
+        "      {children}",
+        "    </${1:ContextName}Context.Provider>",
+        "  );",
+        "};",
+        "",
+        "export const use${1:ContextName} = (): ${1:ContextName}Type => {",
+        "  const context = useContext(${1:ContextName}Context);",
+        "  if (context === undefined) {",
+        "    throw new Error('use${1:ContextName} must be used within a ${1:ContextName}Provider');",
+        "  }",
+        "  return context;",
+        "};"
+      ]
+    },
+    "React Query Hook": {
+      "prefix": "rqh",
+      "body": [
+        "import { useQuery } from 'react-query';",
+        "",
+        "const fetch${1:Data} = async () => {",
+        "  const response = await fetch('${2:apiUrl}');",
+        "  if (!response.ok) {",
+        "    throw new Error('Network response was not ok');",
+        "  }",
+        "  return response.json();",
+        "};",
+        "",
+        "export const use${1:Data} = () => {",
+        "  return useQuery('${3:queryKey}', fetch${1:Data}, {",
+        "    staleTime: ${4:staleTime},",
+        "    cacheTime: ${5:cacheTime},",
+        "  });",
+        "};"
+      ]
+    },
+    "Recoil Atom": {
+      "prefix": "rca",
+      "body": [
+        "import { atom } from 'recoil';",
+        "",
+        "export const ${1:atomName}State = atom({",
+        "  key: '${1:atomName}',",
+        "  default: ${2:defaultValue},",
+        "});"
+      ]
+    },
+    "Recoil Selector": {
+      "prefix": "rcs",
+      "body": [
+        "import { selector } from 'recoil';",
+        "import { ${1:dependencyAtom} } from './atoms';",
+        "",
+        "export const ${2:selectorName} = selector({",
+        "  key: '${2:selectorName}',",
+        "  get: ({ get }) => {",
+        "    const value = get(${1:dependencyAtom});",
+        "    return ${3:computedValue};",
+        "  },",
+        "});"
+      ]
+    },
+    "React Error Boundary with Fallback UI": {
+      "prefix": "reb",
+      "body": [
+        "import React, { Component, ErrorInfo, ReactNode } from 'react';",
+        "",
+        "interface ErrorBoundaryProps {",
+        "  children: ReactNode;",
+        "  fallback: ReactNode;",
+        "}",
+        "",
+        "interface ErrorBoundaryState {",
+        "  hasError: boolean;",
+        "}",
+        "",
+        "class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {",
+        "  constructor(props: ErrorBoundaryProps) {",
+        "    super(props);",
+        "    this.state = { hasError: false };",
+        "  }",
+        "",
+        "  static getDerivedStateFromError(_: Error): ErrorBoundaryState {",
+        "    return { hasError: true };",
+        "  }",
+        "",
+        "  componentDidCatch(error: Error, errorInfo: ErrorInfo) {",
+        "    console.error('ErrorBoundary caught an error:', error, errorInfo);",
+        "  }",
+        "",
+        "  render() {",
+        "    if (this.state.hasError) {",
+        "      return this.props.fallback;",
+        "    }",
+        "",
+        "    return this.props.children;",
+        "  }",
+        "}",
+        "",
+        "export default ErrorBoundary;"
+      ]
+    },
+    "React Custom Event Hook": {
+      "prefix": "rceh",
+      "body": [
+        "import { useEffect, useRef } from 'react';",
+        "",
+        "export function use${1:EventName}(handler: (event: ${2:EventType}) => void) {",
+        "  const savedHandler = useRef<(event: ${2:EventType}) => void>();",
+        "",
+        "  useEffect(() => {",
+        "    savedHandler.current = handler;",
+        "  }, [handler]);",
+        "",
+        "  useEffect(() => {",
+        "    const eventListener = (event: ${2:EventType}) => savedHandler.current?.(event);",
+        "    window.addEventListener('${3:eventName}', eventListener);",
+        "    return () => {",
+        "      window.removeEventListener('${3:eventName}', eventListener);",
+        "    };",
+        "  }, []);",
+        "}"
+      ]
+    }
+
+
 }

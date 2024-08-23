@@ -1,27 +1,41 @@
 {
     "name": "ReactSnipp",
-    "displayName": "React Snipp ~ Snippets you need.",
-    "description": "Supercharge your React development with essential code snippets and utilities for a faster, smoother workflow.",
-    "version": "0.0.3",
+    "displayName": "React Snipp ~ Essential React Snippets",
+    "description": "Supercharge your React development with 50+ essential code snippets for hooks, components, state management, and more. Boost productivity for React, React Native, and Next.js projects.",
+    "version": "0.0.4",
     "icon": "images/logo.png",
     "publisher": "adityavijay21",
     "engines": {
         "vscode": "^1.30.0"
     },
     "categories": [
-        "Snippets"
+        "Snippets",
+        "Programming Languages"
     ],
     "keywords": [
+        "react",
         "react-native",
         "javascript",
         "typescript",
         "snippets",
-        "react-navigation",
+        "hooks",
+        "components",
         "redux",
-        "async-storage",
-        "mobile-development",
+        "context-api",
+        "next-js",
+        "react-router",
+        "styled-components",
+        "formik",
+        "testing",
+        "graphql",
+        "recoil",
+        "react-query",
+        "performance",
+        "error-boundary",
+        "storybook",
         "frontend",
-        "ui"
+        "ui",
+        "productivity"
     ],
     "contributes": {
         "snippets": [
@@ -54,9 +68,8 @@
         "url": "https://github.com/adityavijay21/reactsnipp.git"
     },
     "bugs": {
-        "url": "https://github.com/adityavijay21/reactsnipp.git"
+        "url": "https://github.com/adityavijay21/reactsnipp/issues"
     },
     "homepage": "https://github.com/adityavijay21/reactsnipp#readme",
     "license": "MIT"
-  }
-  
+}
