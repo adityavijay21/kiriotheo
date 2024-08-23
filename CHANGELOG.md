@@ -2,7 +2,7 @@
 
 This changelog details updates for the React Native Essentials VS Code extension.
 
-**v0.0.1 - Initial Release (2024-07-21)**
+**v0.0.4 - Current Release (2024-08-24)**
 
 * **Features:**
     * Introduced a collection of code snippets to streamline React Native development.

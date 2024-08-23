@@ -1,41 +1,32 @@
+## React Snippets
+
 [![Install Now](/images/readmeheader.png)](https://marketplace.visualstudio.com/items?itemName=adityavijay21.ReactSnipp)
 
-a comprehensive collection of React snippets designed to streamline your workflow and boost your productivity. These snippets cover everything from basic imports to complex React patterns, allowing you to write clean, efficient React code faster than ever before.
+A collection of React code snippets to boost your productivity. Covers modern practices, hooks, and more!
 
 ![GIF](/images/readmeuse.gif)
 
-### Key Features:
+##   Getting Started
 
-- 📦 25+ carefully crafted snippets
-- 🎯 Covers modern React practices and hooks
-- 🧩 Easy to use and remember prefixes
-- 🛠 Customizable to fit your coding style
-- 📚 Includes common React patterns and best practices
+### Installation
 
-## 📋 Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Snippet List](#snippet-list)
-- [Contributing](#contributing)
-- [License](#license)
-
-## 💻 Installation
-
-1. Open your code editor (e.g., VS Code, Sublime Text, WebStorm)
+1. Open your code editor (VS Code, Sublime Text, WebStorm)
 2. Navigate to the snippets or user preferences section
 3. Copy the contents of the `react-snippets.json` file
 4. Paste into your user snippets file for JavaScript React
 
-For Visual Studio Code users:
+**For VS Code Users:**
 
 1. Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac)
 2. Type "Configure User Snippets" and select it
 3. Choose "javascriptreact.json"
 4. Paste the snippets into this file
 
-## 📜 Snippet List
-## React Snippet Prefixes
+
+##   Snippets
+
+Explore a collection of helpful snippets categorized by functionality:
+
 
 | Prefix | Description |
 |---|---|
@@ -108,21 +99,21 @@ For Visual Studio Code users:
 
 Use these prefixes in your code editor to quickly generate the corresponding React code snippets.
 
-## 👥 Contributing
+##   Contributing
 
-We welcome contributions! If you have a suggestion for a new snippet or an improvement to an existing one:
+We welcome contributions! If you have a suggestion:
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingSnippet`)
-3. Commit your changes (`git commit -m 'Add some AmazingSnippet'`)
-4. Push to the branch (`git push origin feature/AmazingSnippet`)
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
 5. Open a Pull Request
 
-## 📄 License
+
+##   License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-
 ---
 
-Happy coding! 💻✨ Don't forget to star this repo if you find it useful!
+Happy coding!  ✨ Don't forget to star this repo if you find it useful!
